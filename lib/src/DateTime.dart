@@ -83,4 +83,4 @@ extension DateExtension on DateTime {
 
 ///This value is used to compare [TimeOfDay] values accross the project.
 ///So this should not be changed!.
-DateTime baseDate = DateTime(2000, 1, 1);
+DateTime baseDate = DateTime(2000);
