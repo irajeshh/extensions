@@ -109,4 +109,7 @@ extension StringExtension on String {
     }
     return res ?? orElse;
   }
+
+  ///If the string is a valid [url], then only return this otherwise make it [null]
+  String? get ifValidUrl => isValidUrl ? this : null;
 }
