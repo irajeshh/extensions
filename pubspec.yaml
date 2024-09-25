@@ -5,11 +5,10 @@ publish_to: none
 homepage:
 
 environment:
-  sdk: ^3.5.3
-  flutter: ">=1.17.0"
+  sdk: ^3.3.4
 
 dependencies:
-  intl: 0.19.0
+  intl: 0.18.1
   flutter:
     sdk: flutter
 
