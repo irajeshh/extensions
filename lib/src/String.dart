@@ -51,6 +51,15 @@ extension StringExtension on String {
     return isValid ? '$prefix$_text' : null;
   }
 
+  ///If the current text is a valid email address then return it otherwise make it [null]
+  String? ifValidEmail() {
+    if (this.isValidEmail) {
+      return this;
+    } else {
+      return null;
+    }
+  }
+
   ///Returns only if the given input is a valid url.
   ///Note: you can pass a [Json] and it's [key] to parse the [value]
   ///or you can pass the [String] as direct input
