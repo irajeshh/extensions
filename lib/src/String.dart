@@ -121,4 +121,8 @@ extension StringExtension on String {
 
   ///If the string is a valid [url], then only return this otherwise make it [null]
   String? get ifValidUrl => isValidUrl ? this : null;
+
+  ///If the given String can be parsed as a JSON
+  bool get isJSON =>
+      toLowerCase().replaceAll('"', '').startsWith('{') && toLowerCase().endsWith('}');
 }
