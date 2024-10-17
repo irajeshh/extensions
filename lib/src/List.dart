@@ -53,4 +53,19 @@ extension ListExtention on List<dynamic>? {
       );
     }
   }
+
+  ///To remove all the duplicate entries in the given array!
+  List<String> get removeDuplicates {
+    final List<String> _tmp = <String>[];
+    if (this != null) {
+      for (final dynamic s in this!) {
+        if (_tmp.contains('$s') == false) {
+          _tmp.add('$s');
+        } else {
+          ///Already found!
+        }
+      }
+    }
+    return _tmp;
+  }
 }

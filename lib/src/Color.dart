@@ -30,4 +30,10 @@ extension ColorExtension on Color? {
 
   ///Returns the HEX code value of the color
   String? get hexCode => this == null ? null : '#${this?.value.toRadixString(16)}';
+
+  ///Returns the given color, only if not transparent!
+  ///Used in [copyWith] color pickers!
+  Color? get ifNotTransparent {
+    return this?.value == Colors.transparent.value ? null : this;
+  }
 }

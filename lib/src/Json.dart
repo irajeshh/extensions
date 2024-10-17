@@ -158,7 +158,22 @@ extension JsonExtension on Json {
 
     forEach((final String key, final Object? value) {
       if (value != null) {
-        raw.putIfAbsent(key, () => value);
+        ///Array
+        if (value is List) {
+          if (value.isNotEmpty) {
+            raw.putIfAbsent(key, () => value);
+          }
+
+          ///Map
+        } else if (value is Map) {
+          if (value.keys.isNotEmpty) {
+            raw.putIfAbsent(key, () => value);
+          }
+
+          ///Other data types
+        } else {
+          raw.putIfAbsent(key, () => value);
+        }
       }
     });
     return raw;

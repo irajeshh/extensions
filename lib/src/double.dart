@@ -34,6 +34,9 @@ extension DoubleExtensions on double {
     return result;
   }
 
+  String get toPercent => '${this.toInt()}%';
+  String get toPDFPercentage => '${this.toFixedDigit}%';
+
   ///Used in UI
   String get toRupees => _to(forPDF: false);
 
