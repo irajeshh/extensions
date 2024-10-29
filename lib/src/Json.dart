@@ -170,6 +170,12 @@ extension JsonExtension on Json {
             raw.putIfAbsent(key, () => value);
           }
 
+          ///bool
+        } else if (value is bool) {
+          if (value == true) {
+            raw.putIfAbsent(key, () => value);
+          }
+
           ///Other data types
         } else {
           raw.putIfAbsent(key, () => value);
