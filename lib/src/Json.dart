@@ -185,3 +185,17 @@ extension JsonExtension on Json {
     return raw;
   }
 }
+
+extension MapExtension<K, V> on Map<K, V> {
+  /// Inserts [value] for [key] if it does not exist.
+  /// Updates [key] with [value] if [key] already exists.
+  void set(K key, V value) {
+    if (containsKey(key)) {
+      /// Update existing key with new value.
+      update(key, (_) => value);
+    } else {
+      /// Insert new key-value pair.
+      putIfAbsent(key, () => value);
+    }
+  }
+}
