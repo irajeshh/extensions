@@ -53,7 +53,7 @@ extension StringExtension on String {
 
   ///If the current text is a valid email address then return it otherwise make it [null]
   String? ifValidEmail() {
-    if (this.isValidEmail) {
+    if (isValidEmail) {
       return this;
     } else {
       return null;
@@ -98,15 +98,16 @@ extension StringExtension on String {
   /// If not found, then use [orElse] value as placeholder if given,
   /// or use the last element as value
   T? toEnum<T>(final List<T> values) {
-    if (isEmpty) {
-      return null;
-    } else {
+    if (values.whereType<Enum>().map((final Enum v) => v.name).toList().contains(this)) {
       try {
-        return values.firstWhere((final _) => '$_'.split('.').last.toLowerCase() == toLowerCase());
+        return values.firstWhere((final _) {
+          return '$_'.split('.').last.toLowerCase() == toLowerCase();
+        });
       } on Exception catch (_) {
-        return null;
+        print('Eception getting enum from ""$this"" e: $_');
       }
     }
+    return null;
   }
 
   ///Parses the color from the string
@@ -123,6 +124,5 @@ extension StringExtension on String {
   String? get ifValidUrl => isValidUrl ? this : null;
 
   ///If the given String can be parsed as a JSON
-  bool get isJSON =>
-      toLowerCase().replaceAll('"', '').startsWith('{') && toLowerCase().endsWith('}');
+  bool get isJSON => toLowerCase().replaceAll('"', '').startsWith('{') && toLowerCase().endsWith('}');
 }
