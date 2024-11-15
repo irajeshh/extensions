@@ -12,6 +12,9 @@ extension Extension on int {
     return this > 0 ? monthsFullName[this - 1] : '$this';
   }
 
+  ///Used in UI
+  String get toRupees => this.toDouble().toRupees.replaceAll('.000', '').replaceAll('.00', '');
+
   ///List of month names
   static const List<String> months = <String>[
     'Jan',
