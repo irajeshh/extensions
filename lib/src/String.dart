@@ -125,4 +125,26 @@ extension StringExtension on String {
 
   ///If the given String can be parsed as a JSON
   bool get isJSON => toLowerCase().replaceAll('"', '').startsWith('{') && toLowerCase().endsWith('}');
+
+  ///To convert the given string into camelCase
+  String get toCamelCase {
+    try {
+      // Split the string into words using space or underscore as a delimiter
+      List<String> words = this.split(RegExp(r'[_\s]+'));
+
+      if (words.isEmpty) {
+        return '';
+      }
+
+      // Convert the first word to lowercase and others to capitalized
+      String camelCaseString = words.first.toLowerCase();
+      for (int i = 1; i < words.length; i++) {
+        String word = words[i];
+        camelCaseString += word[0].toUpperCase() + word.substring(1).toLowerCase();
+      }
+      return camelCaseString;
+    } on Exception catch (_) {
+      return this;
+    }
+  }
 }
