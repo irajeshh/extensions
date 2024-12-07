@@ -16,3 +16,4 @@ part 'src/bool.dart';
 part 'src/double.dart';
 part 'src/int.dart';
 part 'src/typedefs.dart';
+part './config.dart';

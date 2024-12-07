@@ -34,8 +34,8 @@ extension DoubleExtensions on double {
     return result;
   }
 
-  String get toPercent => '${this.toInt()}%';
-  String get toPDFPercentage => '${this.toFixedDigit}%';
+  String get toPercent => '${toInt()}%';
+  String get toPDFPercentage => '$toFixedDigit%';
 
   ///Used in UI
   String get toRupees => _to(forPDF: false);
@@ -43,12 +43,23 @@ extension DoubleExtensions on double {
   ///Used in PDF
   String get toPDFRupees => _to(forPDF: true);
 
+  ///Difference ie 49.43 => 0.43
+  double get fraction => this - floor();
+
   ///Converts the given double as indian rupees
   ///To convert the num into indian currency but for different mode of usage
   String _to({required final bool forPDF}) {
     final String prefix = forPDF ? 'Rs' : rupeeSymbol;
     final NumberFormat formatter = NumberFormat.currency(locale: 'en_IN', symbol: prefix);
-    return formatter.format(this);
+    final double input = ExtensionsConfig._roundOffRupees ? roundOff : this;
+    final String out = formatter.format(input);
+
+    ///Lets remove all the .00000 if required
+    if (ExtensionsConfig._removeZeros && input.fraction == 0) {
+      return out.split('.').firstOrNull ?? out;
+    } else {
+      return out;
+    }
   }
 
   ///Eg: 1000 will be converted as One Thousand
@@ -158,5 +169,21 @@ extension DoubleExtensions on double {
   ///Returns the given value, only if that is greater than the given [val]
   double? ifGreater([final double val = 0]) {
     return this > val ? this : null;
+  }
+
+  ///Used to round of the numbers after .
+  double get roundOff {
+    final double input = toFixedDigit;
+    final double rp = ExtensionsConfig._roundOffPoint;
+
+    if (fraction < rp) {
+      return input.floor().toDouble();
+    } else {
+      if (fraction == rp && ExtensionsConfig._keepRoundOffPoint) {
+        return input;
+      } else {
+        return input.floor() + 1.00;
+      }
+    }
   }
 }
