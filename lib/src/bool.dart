@@ -7,4 +7,7 @@ extension BoolExtension on bool? {
 
   ///In sql, there are only int allowed
   int? get toSQL => this == null ? null : (this! ? 1 : 0);
+
+  ///Used in builders comparision process
+  String get toIntString => (this ?? false).toSQL.toString();
 }
