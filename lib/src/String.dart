@@ -130,7 +130,7 @@ extension StringExtension on String {
   String get toCamelCase {
     try {
       // Split the string into words using space or underscore as a delimiter
-      List<String> words = this.split(RegExp(r'[_\s]+'));
+      final List<String> words = split(RegExp(r'[_\s]+'));
 
       if (words.isEmpty) {
         return '';
@@ -139,11 +139,20 @@ extension StringExtension on String {
       // Convert the first word to lowercase and others to capitalized
       String camelCaseString = words.first.toLowerCase();
       for (int i = 1; i < words.length; i++) {
-        String word = words[i];
+        final String word = words[i];
         camelCaseString += word[0].toUpperCase() + word.substring(1).toLowerCase();
       }
       return camelCaseString;
     } on Exception catch (_) {
+      return this;
+    }
+  }
+
+  ///To remove token from firebase storge file URL
+  String get withoutToken {
+    if (contains('&token=')) {
+      return split('&token=').first;
+    } else {
       return this;
     }
   }
