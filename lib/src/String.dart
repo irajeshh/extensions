@@ -156,4 +156,19 @@ extension StringExtension on String {
       return this;
     }
   }
+
+  ///Eg : "Hello World" => "hello, world" mainly used on firestore search
+  ///which has a limitation maximum of 9 words
+  List<String> get to9Tags {
+    List<String> list = <String>[];
+    if (trim().isNotEmpty) {
+      list = toLowerCase().split(' ')
+        ..sort((final String b, final String a) => a.length.compareTo(b.length))
+        ..removeWhere((final String element) => element.length < 3);
+      if (list.length > 9) {
+        list = list..removeRange(9, list.length);
+      }
+    }
+    return list;
+  }
 }
