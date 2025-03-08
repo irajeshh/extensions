@@ -77,6 +77,10 @@ extension StringExtension on String {
   ///Parses int? from the given String
   int? get toInt => int.tryParse(this);
 
+  int? get nullableInt => {'tmp': '$this'}.nullableInt('tmp');
+
+  double? get nullableDouble => {'tmp': '$this'}.nullableDouble('tmp');
+
   ///Checks if this string is a valid Email
   bool get isValidEmail => contains('@') && contains('.') && length > 5;
 
