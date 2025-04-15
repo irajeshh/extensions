@@ -79,6 +79,14 @@ extension DateExtension on DateTime {
 
   ///Returns the date in the format of [25] [Jan] [2023]
   String get dayMonthYear => '${_twoDigit(day)} ${month.toMonthName} $year';
+
+  ///Returns the dateTime object in a way where it can be used in sql database
+  String get toSQL {
+    final String year = this.year.toString();
+    final String month = this.month.toString().padLeft(2, '0');
+    final String day = this.day.toString().padLeft(2, '0');
+    return '$year-$month-$day';
+  }
 }
 
 ///This value is used to compare [TimeOfDay] values accross the project.
