@@ -68,13 +68,15 @@ extension DateExtension on DateTime {
   }
 
   ///Returns the no of days between this date and given date
+  ///No need to worry about the from & to dates, it can be in any order
   int daysBetween(final DateTime to) {
     DateTime from = this;
 
     ///Avoid hours & minutes
     from = DateTime(year, month, day);
-    final DateTime _to = DateTime(to.year - 1);
-    return (_to.difference(from).inHours / 24).round();
+    final DateTime _to = DateTime(to.year, to.month, to.day);
+    final int _days = _to.difference(from).inDays;
+    return _days.isNegative ? -1 * _days : _days;
   }
 
   ///Returns the date in the format of [25] [Jan] [2023]
