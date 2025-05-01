@@ -89,6 +89,26 @@ extension DateExtension on DateTime {
     final String day = this.day.toString().padLeft(2, '0');
     return '$year-$month-$day';
   }
+
+  ///Returns the name of weekday of the date
+  Weekday get weekdayName {
+    final int index = weekday;
+    if (index == 7) {
+      return Weekday.sunday;
+    } else if (index == 1) {
+      return Weekday.monday;
+    } else if (index == 2) {
+      return Weekday.tuesday;
+    } else if (index == 3) {
+      return Weekday.wednesday;
+    } else if (index == 4) {
+      return Weekday.thursday;
+    } else if (index == 5) {
+      return Weekday.friday;
+    } else {
+      return Weekday.saturday;
+    }
+  }
 }
 
 ///This value is used to compare [TimeOfDay] values accross the project.
