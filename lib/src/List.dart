@@ -4,6 +4,9 @@ part of '../extensions.dart';
 extension ListStringExtention on List<String> {
   ///Removes all brackets and returns the elements
   String get text => '$this'.replaceAll('[', '').replaceAll(']', '');
+
+  ///Converts the given List of Strings to a List of Enums
+  List<T> toEnums<T>(final List<T> values) => map<T>((final String e) => e.toEnum<T>(values) ?? values.last).toList();
 }
 
 // ignore: public_member_api_docs
@@ -18,8 +21,7 @@ extension ListExtention on List<dynamic>? {
     }
     for (final dynamic sentence in this!) {
       if (sentence != null) {
-        final List<String> words =
-            '$sentence'.toLowerCase().replaceAll(',', '').replaceAll('\n', ' ').split(' ');
+        final List<String> words = '$sentence'.toLowerCase().replaceAll(',', '').replaceAll('\n', ' ').split(' ');
         for (final String word in words) {
           final String tag = word.trim();
           if (tags.contains(tag) == false) {

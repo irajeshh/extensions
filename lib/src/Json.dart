@@ -97,6 +97,9 @@ extension JsonExtension on Json {
     return safeList<Json>(key).map<T>(fromJson).toList();
   }
 
+  ///Returns the list of Enums from given Json
+  List<T> safeEnums<T>(final String key, final List<T> values) => safeList<String>(key).toEnums(values);
+
   ///Trying to render an Icon based on given [codePoint] value
   IconData? icon(final String key) {
     final int? codePoint = nullableInt(key);
@@ -189,10 +192,10 @@ extension JsonExtension on Json {
 extension MapExtension<K, V> on Map<K, V> {
   /// Inserts [value] for [key] if it does not exist.
   /// Updates [key] with [value] if [key] already exists.
-  void set(K key, V value) {
+  void set(final K key, final V value) {
     if (containsKey(key)) {
       /// Update existing key with new value.
-      update(key, (_) => value);
+      update(key, (final _) => value);
     } else {
       /// Insert new key-value pair.
       putIfAbsent(key, () => value);
