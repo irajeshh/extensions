@@ -9,6 +9,12 @@ extension ListStringExtention on List<String> {
   List<T> toEnums<T>(final List<T> values) => map<T>((final String e) => e.toEnum<T>(values) ?? values.last).toList();
 }
 
+extension ListOfEnumsExt on List<Enum> {
+  List<String> get toTexts => map((final Enum f) => f.text).toList();
+  List<String> get toNames => map((final Enum f) => f.name).toList();
+}
+
+
 // ignore: public_member_api_docs
 extension ListExtention on List<dynamic>? {
   ///To generate a list of [Tags] for [Firebase] search functionality from the given list of [sentences]
