@@ -9,27 +9,6 @@ extension ListStringExtention on List<String> {
   List<T> toEnums<T>(final List<T> values) => map<T>((final String e) => e.toEnum<T>(values) ?? values.last).toList();
 }
 
-///To simplify the conversion of a List<Enum> to a List<String>
-extension ListEnumExtentionNullable on List<Enum>? {
-  ///Generates a List<String> from the given List<Enum>
-  List<String>? get toNames {
-    if (this == null) {
-      return null;
-    } else {
-      return this!.map((final Enum e) => e.name).toList();
-    }
-  }
-
-  ///Generates a List<String> from the given List<Enum> but with .text
-  List<String>? get toTexts {
-    if (this == null) {
-      return null;
-    } else {
-      return this!.map((final Enum e) => e.text).toList();
-    }
-  }
-}
-
 // ignore: public_member_api_docs
 extension ListExtention on List<dynamic>? {
   ///To generate a list of [Tags] for [Firebase] search functionality from the given list of [sentences]
