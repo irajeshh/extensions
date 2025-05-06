@@ -5,6 +5,8 @@ extension TimeOfDayExtension on TimeOfDay {
   ///Converts as 8:13 and 17:34 to save in sql database as String
   String get toSQL => '$hour:$minute';
 
+  String get hm => this.millis.toDate.hm;
+
   ///Creates new instance of the data
   TimeOfDay copyWith({
     final int? hour,
