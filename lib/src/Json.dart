@@ -45,7 +45,14 @@ extension JsonExtension on Json {
   int? nullableInt(final String key) => int.tryParse('${this[key]}');
 
   ///Parses the value as [bool]
-  bool safeBool(final String key, {final bool orElse = false}) => (this[key] ?? orElse) as bool;
+  bool safeBool(final String key, {final bool orElse = false}) {
+    final Object? v = this[key];
+    if (v != null) {
+      return <String>['yes', 'true', '1', '1.0'].contains(v.toString().toLowerCase());
+    } else {
+      return orElse;
+    }
+  }
 
   ///Parses the [createdAt] value as [int]
   ///A common access is applied, because 99% of the models we create will
