@@ -83,6 +83,7 @@ extension JsonExtension on Json {
   }
 
   ///Returns the List from the given [key]
+  @Deprecated('Use safeList<String> instead')
   List<String> safeListOfStrings(
     final String key, {
     final List<String> orElse = const <String>[],
