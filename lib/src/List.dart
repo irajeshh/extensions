@@ -14,7 +14,6 @@ extension ListOfEnumsExt on List<Enum> {
   List<String> get toNames => map((final Enum f) => f.name).toList();
 }
 
-
 // ignore: public_member_api_docs
 extension ListExtention on List<dynamic>? {
   ///To generate a list of [Tags] for [Firebase] search functionality from the given list of [sentences]
@@ -75,5 +74,10 @@ extension ListExtention on List<dynamic>? {
       }
     }
     return _tmp;
+  }
+
+  ///If the given list contains the given object in any format
+  bool has(final Object? o) {
+    return (this ?? <dynamic>[]).map((final Object? e) => e.equatable).toList().contains(o?.equatable);
   }
 }
