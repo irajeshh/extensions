@@ -51,17 +51,17 @@ extension ListExtention on List<dynamic>? {
     }
   }
 
-  ///Generates the given List<dynamic> into a List<Json>
-  List<Json> get toListOfJsons {
-    if (this == null) {
-      return <Json>[];
-    } else {
-      return List<Json>.generate(
-        this!.length,
-        (final int index) => (this![index] is Json) ? (this![index] as Json) : <String, dynamic>{},
-      );
-    }
-  }
+  // ///Generates the given List<dynamic> into a List<Json>
+  // List<Json> get toListOfJsons {
+  //   if (this == null) {
+  //     return <Json>[];
+  //   } else {
+  //     return List<Json>.generate(
+  //       this!.length,
+  //       (final int index) => (this![index] is Json) ? (this![index] as Json) : <String, dynamic>{},
+  //     );
+  //   }
+  // }
 
   ///To remove all the duplicate entries in the given array!
   List<String> get removeDuplicates {
