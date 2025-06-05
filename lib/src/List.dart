@@ -12,8 +12,12 @@ extension ListStringExtention on List<String> {
 extension ListOfEnumsExt on List<Enum> {
   ///Converts the given List of Enums to a List of .text values
   List<String> get toTexts => map((final Enum f) => f.text).toList();
+
   ///Converts the given List of Enums to a List of .name values
   List<String> get toNames => map((final Enum f) => f.name).toList();
+
+  ///Readable version of the List of Enum texts
+  String get text => toTexts.text;
 }
 
 // ignore: public_member_api_docs
