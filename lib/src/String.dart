@@ -77,9 +77,9 @@ extension StringExtension on String {
   ///Parses int? from the given String
   int? get toInt => int.tryParse(this);
 
-  int? get nullableInt => {'tmp': '$this'}.nullableInt('tmp');
+  int? get nullableInt => <String, String>{'tmp': this}.nullableInt('tmp');
 
-  double? get nullableDouble => {'tmp': '$this'}.nullableDouble('tmp');
+  double? get nullableDouble => <String, String>{'tmp': this}.nullableDouble('tmp');
 
   ///Checks if this string is a valid Email
   bool get isValidEmail => contains('@') && contains('.') && length > 5;
@@ -97,6 +97,25 @@ extension StringExtension on String {
 
   ///If the given string is a valid readable URL
   bool get isValidUrl => contains('http') && contains('.') && contains('/');
+
+  ///Parses and returns the caption from the given text if it's an URL
+  String? get caption {
+    if (this == null) {
+      return null;
+    } else {
+      final Uri uri = Uri.parse(this);
+      final String? caption = uri.queryParameters.nullableString('caption');
+      return caption?.ifValid();
+    }
+  }
+
+  ///Puts the given caption to the URL
+  String putCaption(final String c) {
+    final Uri uri = Uri.parse(this);
+    final Map<String, String> queryParams = <String, String>{...uri.queryParameters};
+    queryParams['caption'] = c;
+    return uri.replace(queryParameters: queryParams).toString();
+  }
 
   /// Common method to convert a string to an enum value of a given enum type
   /// If not found, then use [orElse] value as placeholder if given,
