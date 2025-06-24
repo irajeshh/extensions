@@ -86,4 +86,13 @@ extension ListExtention on List<dynamic>? {
   bool has(final Object? o) {
     return (this ?? <dynamic>[]).map((final Object? e) => e.equatable).toList().contains(o?.equatable);
   }
+
+  ///If the given list is not empty, then return the casted list of type [T]
+  List<T>? ifNotEmpty<T>() {
+    if (this == null || this!.isEmpty) {
+      return null;
+    } else {
+      return this!.cast<T>();
+    }
+  }
 }
