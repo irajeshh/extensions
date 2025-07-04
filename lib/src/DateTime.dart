@@ -59,11 +59,11 @@ extension DateExtension on DateTime {
     } else if (difference.inHours >= 1) {
       ago = '1 hour ${isPast ? 'ago' : ''}';
     } else if (difference.inMinutes >= 2) {
-      ago = '${difference.inMinutes} minutes ${isPast ? 'ago' : ''}';
+      ago = '${difference.inMinutes} mins ${isPast ? 'ago' : ''}';
     } else if (difference.inMinutes >= 1) {
       ago = '1 minute ${isPast ? 'ago' : ''}';
     } else if (difference.inSeconds >= 3) {
-      ago = '${difference.inSeconds} seconds ${isPast ? 'ago' : ''}';
+      ago = '${difference.inSeconds} secs ${isPast ? 'ago' : ''}';
     } else {
       ago = isPast ? 'Just now' : 'now';
     }
