@@ -34,12 +34,12 @@ extension JsonExtension on Json {
 
   /// Returns [double] if any values are found as valid.
   double? nullableDouble(final String key, {final bool toFixedDigit = true}) {
-    double? v = double.tryParse('${this[key]}');
+    final double? v = double.tryParse('${this[key]}');
     return toFixedDigit ? v?.toFixedDigit : v;
   }
 
   ///Parses the double values from Json
-  double safeDouble(final String key, {final double? orElse, bool toFixedDigit = true}) {
+  double safeDouble(final String key, {final double? orElse, final bool toFixedDigit = true}) {
     final double result = nullableDouble(key, toFixedDigit: toFixedDigit) ?? orElse ?? 0;
     return toFixedDigit ? result.toFixedDigit : result;
   }
