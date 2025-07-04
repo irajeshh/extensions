@@ -46,7 +46,7 @@ extension StringExtension on String {
   ///If minimum length is given, then any text which is less than [minLength] will be returned as [null]
   String? ifValid({final String prefix = '', final int minLength = 1}) {
     final String _text = this;
-    bool isValid = _text.characters.isNotEmpty && _text != 'null';
+    bool isValid = _text.isNotEmpty && _text != 'null';
     isValid = _text.length >= minLength;
     return isValid ? '$prefix$_text' : null;
   }
