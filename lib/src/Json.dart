@@ -109,7 +109,7 @@ extension JsonExtension on Json {
   }
 
   ///Returns the list of Enums from given Json
-  List<T> safeEnums<T>(final String key, final List<T> values) => safeList<String>(key).toEnums(values);
+  // List<T> safeEnums<T>(final String key, final List<T> values) => safeList<String>(key).toEnums<T>(values);
 
   ///Trying to render an Icon based on given [codePoint] value
   IconData? icon(final String key) {
