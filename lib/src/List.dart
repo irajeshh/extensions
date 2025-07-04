@@ -6,7 +6,17 @@ extension ListStringExtention on List<String> {
   String get text => '$this'.replaceAll('[', '').replaceAll(']', '');
 
   ///Converts the given List of Strings to a List of Enums
-  List<T> toEnums<T>(final List<T> values) => map<T>((final String e) => e.toEnum<T>(values) ?? values.last).toList();
+  // List<T> toEnums<T>(final List<T> values) => map<T>((final String e) => e.toEnum<T>(values) ?? values.last).toList();
+  List<T> toEnums<T extends Enum>(final List<T> values) {
+    final List<T> result = <T>[];
+    forEach((final String e) {
+      final T? enumVal = e.toEnum<T>(values);
+      if (enumVal != null) {
+        result.add(enumVal);
+      }
+    });
+    return result;
+  }
 }
 
 extension ListOfEnumsExt on List<Enum> {
