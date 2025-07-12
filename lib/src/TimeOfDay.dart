@@ -5,6 +5,10 @@ extension TimeOfDayExtension on TimeOfDay {
   ///Converts as 8:13 and 17:34 to save in sql database as String
   String get toSQL => '$hour:$minute';
 
+  bool get isValid => hour != 0 || minute != 0;
+  String? get toSQLNullable => isValid ? toSQL : null;
+  TimeOfDay? get ifValid => isValid ? this : null;
+
   String get hm => this.millis.toDate.hm;
 
   ///Creates new instance of the data
