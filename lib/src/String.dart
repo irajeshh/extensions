@@ -193,4 +193,7 @@ extension StringExtension on String {
     }
     return list;
   }
+
+  ///Replaces today date in the string with "Today"
+  String get setToday => replaceAll(DateTime.now().toSQL, 'Today').replaceAll(DateTime.now().dayMonthYear, 'Today');
 }

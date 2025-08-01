@@ -21,7 +21,7 @@ extension DateExtension on DateTime {
 
   ///Returns Date & Time in [2023-04-08 @ 07:03 AM] format
   String get ymdhm => '$ymd @ $hm';
-  
+
   ///Returns Date & Time in [2023-04-08-07:03-AM] format
   String get ymdhmID => '$ymd-$hm'.replaceAll(' ', '-');
 
@@ -84,6 +84,13 @@ extension DateExtension on DateTime {
 
   ///Returns the date in the format of [25] [Jan] [2023]
   String get dayMonthYear => '${_twoDigit(day)} ${month.toMonthName} $year';
+
+  ///Returns the date if it is today
+  bool get isToday => toSQL == DateTime.now().toSQL;
+
+  ///Returns the date if it is same
+  bool isSameDate(final DateTime date) => toSQL == date.toSQL;
+
 
   ///Returns the dateTime object in a way where it can be used in sql database
   String get toSQL {
