@@ -46,9 +46,8 @@ extension StringExtension on String {
   ///If minimum length is given, then any text which is less than [minLength] will be returned as [null]
   String? ifValid({final String prefix = '', final int minLength = 1}) {
     final String _text = this;
-    bool isValid = _text.isNotEmpty && _text != 'null';
-    isValid = _text.length >= minLength;
-    return isValid ? '$prefix$_text' : null;
+    final bool _valid = isValid && _text.length >= minLength;
+    return _valid ? '$prefix$_text' : null;
   }
 
   ///If the current text is a valid email address then return it otherwise make it [null]
@@ -93,7 +92,7 @@ extension StringExtension on String {
   }
 
   ///If the given string is valid ie not empty
-  bool get isValid => trim().isNotEmpty;
+  bool get isValid => isNotEmpty && <String>['n/a', 'null', ''].contains(toLowerCase()) == false;
 
   ///If the given string is a valid readable URL
   bool get isValidUrl => contains('http') && contains('.') && contains('/');
