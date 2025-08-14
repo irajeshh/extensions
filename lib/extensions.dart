@@ -19,3 +19,5 @@ part 'src/double.dart';
 part 'src/int.dart';
 part 'src/typedefs.dart';
 part './src/Object.dart';
+
+const int standardNRICLength = 9;

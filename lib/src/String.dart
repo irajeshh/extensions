@@ -83,6 +83,17 @@ extension StringExtension on String {
   ///Checks if this string is a valid Email
   bool get isValidEmail => contains('@') && contains('.') && length > 5;
 
+  ///Checks if this string is a valid Singapore NRIC or FIN number
+  ///(1st & last char are alphabets, rest are numbers)
+  bool get isValidNricFin {
+    if (length == standardNRICLength) {
+      final RegExp regExp = RegExp(r'^[A-Za-z]\d+[A-Za-z]$');
+      return regExp.hasMatch(this);
+    } else {
+      return false;
+    }
+  }
+
   ///This function converts the given String which is in camelCase
   String get camelCaseToString {
     // Use a regular expression to insert a space before each capital letter
