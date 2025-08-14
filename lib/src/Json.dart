@@ -5,7 +5,7 @@ extension JsonExtension on Json {
   ///Returns a valid [String] which has characters length greater than [1] and not equal to ["null"]
   ///Otherwise [null] will be returned.
   ///Used inside [fromJson]
-  String? nullableString(final String key, {final bool alllowEmpty = true}) {
+  String? nullableString(final String key, {final bool alllowEmpty = false}) {
     final String? text = this[key] == null ? null : '${this[key]}';
 
     ///If empty string is not allowed, then check if the string is empty string or not
@@ -69,6 +69,14 @@ extension JsonExtension on Json {
 
   ///Returns a safe Json
   Json safeJson(final String key) => nullableJson(key) ?? <String, dynamic>{};
+
+  HeaderJson safeHeaderJson(final String key) {
+    HeaderJson res = {};
+    safeJson(key).forEach((k, v) {
+      if (v is String) res[k] = v;
+    });
+    return res;
+  }
 
   ///Generates a List of dynamic from the given key inside the Json
   List<T> safeList<T>(final String key) {
