@@ -123,7 +123,7 @@ extension StringExtension on String {
   String putCaption(final String c) => put('caption', c);
 
   ///Puts the given caption to the URL
-  String put(final String key, String value) {
+  String put(final String key, final String value) {
     final Uri uri = Uri.parse(this);
     final Map<String, String> queryParams = <String, String>{...uri.queryParameters};
     queryParams[key] = value;
@@ -210,4 +210,11 @@ extension StringExtension on String {
 
   ///Replaces today date in the string with "Today"
   String get setToday => replaceAll(DateTime.now().toSQL, 'Today').replaceAll(DateTime.now().dayMonthYear, 'Today');
+
+  ///Puts an article before the string based on its first character
+  String get putArticle {
+    final String f = characters.first;
+    final bool isVowel = <String>['a', 'e', 'i', 'o', 'u'].has(f);
+    return '${isVowel ? 'an' : 'a'} $this';
+  }
 }
