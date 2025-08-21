@@ -120,10 +120,13 @@ extension StringExtension on String {
   }
 
   ///Puts the given caption to the URL
-  String putCaption(final String c) {
+  String putCaption(final String c) => put('caption', c);
+
+  ///Puts the given caption to the URL
+  String put(final String key, String value) {
     final Uri uri = Uri.parse(this);
     final Map<String, String> queryParams = <String, String>{...uri.queryParameters};
-    queryParams['caption'] = c;
+    queryParams[key] = value;
     return uri.replace(queryParameters: queryParams).toString();
   }
 
