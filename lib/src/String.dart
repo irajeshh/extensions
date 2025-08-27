@@ -119,6 +119,22 @@ extension StringExtension on String {
     }
   }
 
+  ///Returns the file name from the URL if available
+  String? get fileName {
+    final Uri uri = Uri.parse(this);
+    final List<String> segments = uri.pathSegments;
+    if (segments.isEmpty) {
+      return null;
+    } else {
+      final String lastSegment = segments.last;
+      if (lastSegment.contains('.') == false) {
+        return null;
+      } else {
+        return lastSegment.contains('/') ? lastSegment.fileName : lastSegment;
+      }
+    }
+  }
+
   ///Puts the given caption to the URL
   String putCaption(final String c) => put('caption', c);
 
