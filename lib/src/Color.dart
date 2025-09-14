@@ -34,14 +34,16 @@ extension ColorExtension on Color? {
   Color? get ifNotTransparent {
     return this?.value == Colors.transparent.value ? null : this;
   }
+}
 
+extension ColorListExtension2 on Color {
   /// Extension on [Color] to resolve opacity based on a [double] value.
   /// The opacity is expected to be between 0.0 (fully transparent) and
   /// 1.0 (fully opaque).
   /// Returns a new color with the applied opacity.
-  Color? withhOpacity(double value) {
+  Color withhOpacity(double value) {
     value = value.clamp(0.0, 1.0);
     final int alpha = (value * 255).round();
-    return this?.withAlpha(alpha);
+    return withAlpha(alpha);
   }
 }
