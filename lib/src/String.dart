@@ -109,13 +109,15 @@ extension StringExtension on String {
   bool get isValidUrl => contains('http') && contains('.') && contains('/');
 
   ///Parses and returns the caption from the given text if it's an URL
-  String? get caption {
+  String? get caption => this == null ? null : getParam('caption');
+
+  String? getParam(String key) {
     if (this == null) {
       return null;
     } else {
       final Uri uri = Uri.parse(this);
-      final String? caption = uri.queryParameters.nullableString('caption');
-      return caption?.ifValid();
+      final String? param = uri.queryParameters.nullableString(key);
+      return param?.ifValid();
     }
   }
 
