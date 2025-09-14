@@ -19,6 +19,17 @@ extension DateExtension on DateTime {
     return '$h2:$m $amPm';
   }
 
+  ///Returns Hour & Minute in [07:03 AM] format
+  String get hms {
+    final int hours = hour;
+    final String amPm = hours >= 12 ? 'PM' : 'AM';
+    final int h = hours > 12 ? hours - 12 : hours;
+    final String h2 = _twoDigit(h);
+    final String m = _twoDigit(minute);
+    final String s = _twoDigit(second);
+    return '$h2:$m:$s $amPm';
+  }
+
   ///Returns Date & Time in [2023-04-08 @ 07:03 AM] format
   String get ymdhm => '$ymd @ $hm';
 
@@ -82,6 +93,11 @@ extension DateExtension on DateTime {
     return _days.isNegative ? -1 * _days : _days;
   }
 
+  int get age {
+    final int _days = DateTime.now().difference(this).inDays;
+    return _days ~/ 365;
+  }
+
   ///Returns the date in the format of [25] [Jan] [2023]
   String get dayMonthYear => '${_twoDigit(day)} ${month.toMonthName} $year';
 
@@ -90,7 +106,6 @@ extension DateExtension on DateTime {
 
   ///Returns the date if it is same
   bool isSameDate(final DateTime date) => toSQL == date.toSQL;
-
 
   ///Returns the dateTime object in a way where it can be used in sql database
   String get toSQL {
