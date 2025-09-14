@@ -40,13 +40,23 @@ extension ListExtention on List<dynamic>? {
     if (this == null) {
       return <String>[];
     }
+    // Process each sentence John Basky
     for (final dynamic sentence in this!) {
       if (sentence != null) {
         final List<String> words = '$sentence'.toLowerCase().replaceAll(',', '').replaceAll('\n', ' ').split(' ');
+        // Add full words as tags John, Basky
         for (final String word in words) {
           final String tag = word.trim();
-          if (tags.contains(tag) == false) {
+          if (tags.contains(tag) == false && tag.isValid) {
             tags.add(tag);
+
+            // Characters of words  Joh, John, Bas, Bask, Basky
+            for (int i = 3; i <= tag.length; i++) {
+              final String prefix = tag.substring(0, i);
+              if (!tags.contains(prefix) && prefix.length >= 3) {
+                tags.add(prefix);
+              }
+            }
           }
         }
       }
