@@ -71,8 +71,8 @@ extension JsonExtension on Json {
   Json safeJson(final String key) => nullableJson(key) ?? <String, dynamic>{};
 
   HeaderJson safeHeaderJson(final String key) {
-    final HeaderJson res = <String, String>{};
-    safeJson(key).forEach((final String k, final v) {
+    HeaderJson res = {};
+    safeJson(key).forEach((k, v) {
       if (v is String) res[k] = v;
     });
     return res;
@@ -84,16 +84,7 @@ extension JsonExtension on Json {
     if (this[key] is List) {
       for (final dynamic e in this[key] as List<dynamic>) {
         if (e is T) {
-          //Gap issue fixed https://github.com/norahsolutions/csos/issues/269
-          if (T is String) {
-            if (e.toString().trim().isNotEmpty) {
-              list.add(e);
-            } else {
-              //debugPrint('empty string found inside the list');
-            }
-          } else {
-            list.add(e);
-          }
+          list.add(e);
         } else {
           debugPrint('mismatching data format!');
         }
@@ -126,8 +117,7 @@ extension JsonExtension on Json {
   }
 
   ///Returns the list of Enums from given Json
-  List<T> safeEnums<T>(final String key, final List<T> values) =>
-      safeList<String>(key).removeDuplicates.toEnums<T>(values);
+  List<T> safeEnums<T>(final String key, final List<T> values) => safeList<String>(key).removeDuplicates.toEnums<T>(values);
 
   ///Trying to render an Icon based on given [codePoint] value
   IconData? icon(final String key) {
