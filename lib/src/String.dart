@@ -178,7 +178,8 @@ extension StringExtension on String {
   String? get ifValidUrl => isValidUrl ? this : null;
 
   ///If the given String can be parsed as a JSON
-  bool get isJSON => toLowerCase().replaceAll('"', '').startsWith('{') && toLowerCase().endsWith('}');
+  bool get isJSON =>
+      toLowerCase().replaceAll('"', '').startsWith('{') && toLowerCase().endsWith('}');
 
   ///To convert the given string into camelCase
   String get toCamelCase {
@@ -227,7 +228,8 @@ extension StringExtension on String {
   }
 
   ///Replaces today date in the string with "Today"
-  String get setToday => replaceAll(DateTime.now().toSQL, 'Today').replaceAll(DateTime.now().dayMonthYear, 'Today');
+  String get setToday =>
+      replaceAll(DateTime.now().toSQL, 'Today').replaceAll(DateTime.now().dayMonthYear, 'Today');
 
   ///Puts an article before the string based on its first character
   String get putArticle {
