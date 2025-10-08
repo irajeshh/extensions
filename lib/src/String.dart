@@ -113,7 +113,7 @@ extension StringExtension on String {
   ///Parses and returns the caption from the given text if it's an URL
   String? get caption => this == null ? null : getParam('caption');
 
-  String? getParam(String key) {
+  String? getParam(final String key) {
     if (this == null) {
       return null;
     } else {
@@ -238,5 +238,25 @@ extension StringExtension on String {
     final String f = characters.first;
     final bool isVowel = <String>['a', 'e', 'i', 'o', 'u'].has(f);
     return '${isVowel ? 'an' : 'a'} $this';
+  }
+
+  /// Make only first 3 chars for the given input
+  String get shortForm {
+    final List<String> words = camelCaseToString.split(' ')
+      ..removeWhere((final String e) => e.isValid == false);
+    // printt('words: $words');
+
+    if (words.length > 1) {
+      // Multiple words - take first letter of each word
+      return words.map((final String word) => word[0].toUpperCase()).join();
+    } else {
+      if (length <= 3) {
+        // Short single word - return as is in uppercase
+        return toUpperCase();
+      } else {
+        // Long single word - take first 3 letters
+        return substring(0, 3).toUpperCase();
+      }
+    }
   }
 }
