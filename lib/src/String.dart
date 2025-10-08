@@ -24,9 +24,11 @@ extension StringExtension on String {
   String get quoted => '❝$this❞';
 
   ///Removes all the special characters from the given String
-  String get filtered {
+  String get filtered => filteredExcludingSpace.replaceAll(' ', '');
+
+  ///Removes all the special characters from the given String except space
+  String get filteredExcludingSpace {
     return replaceAll(RegExp(r'[^\w\s]+'), '')
-        .replaceAll(' ', '')
         .replaceAll('_', '')
         .replaceAll('*', '')
         .replaceAll('_', '')
