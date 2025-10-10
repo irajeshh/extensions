@@ -240,6 +240,12 @@ extension StringExtension on String {
     return '${isVowel ? 'an' : 'a'} $this';
   }
 
+  ///Returns singular or plural form of the given string based on the count
+  String pluralize(final int count, {final String? singular, final String? plural}) {
+    String _t = count == 1 ? singular ?? this : plural ?? '${this}s';
+    return '$count $_t';
+  }
+
   /// Make only first 3 chars for the given input
   String get shortForm {
     final List<String> words = camelCaseToString.split(' ')
