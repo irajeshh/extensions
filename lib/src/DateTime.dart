@@ -140,6 +140,17 @@ extension DateExtension on DateTime {
       return Weekday.saturday;
     }
   }
+
+  ///Returns a new DateTime with the time set to the beginning of the day (00:00)
+  DateTime get starting => copyWith(hour: 0, minute: 0);
+
+  ///Returns a new DateTime with the time set to the end of the day (23:59:59)
+  DateTime get ending => copyWith(hour: 23, minute: 59, second: 59);
+
+  ///Returns the milliseconds since epoch for the beginning of the day
+  int get startingMillis => starting.millisecondsSinceEpoch;
+  ///Returns the milliseconds since epoch for the end of the day
+  int get endingMillis => ending.millisecondsSinceEpoch;
 }
 
 ///This value is used to compare [TimeOfDay] values accross the project.
