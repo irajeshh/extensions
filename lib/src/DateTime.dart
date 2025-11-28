@@ -33,8 +33,14 @@ extension DateExtension on DateTime {
   ///Returns Date & Time in [2023-04-08 @ 07:03 AM] format
   String get ymdhm => '$ymd @ $hm';
 
+  ///Returns Date & Time in [2023-04-08 @ 07:03 AM] format
+  String get ymdhms => '$ymd @ $hms';
+
   ///Returns Date & Time in [2023-04-08-07:03-AM] format
   String get ymdhmID => '$ymd-$hm'.replaceAll(' ', '-');
+
+  ///Returns Date & Time in [2023-04-08-07:03-AM] format
+  String get ymdhmsID => '$ymd-$hms'.replaceAll(' ', '-');
 
   ///Returns the no of days in the given date
   int get noOfDaysInMonth {
