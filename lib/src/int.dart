@@ -13,39 +13,7 @@ extension Extension on int {
   }
 
   ///Used in UI
-  String get toRupees => this.toDouble().toRupees.replaceAll('.000', '').replaceAll('.00', '');
-
-  ///List of month names
-  static const List<String> months = <String>[
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-
-  /// List of full month names
-  static const List<String> monthsFullName = <String>[
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  String get toRupees => toDouble().toRupees.replaceAll('.000', '').replaceAll('.00', '');
 
   ///Checks if this number is a leap year or not
   bool get isLeapYear {
@@ -104,3 +72,35 @@ extension Extension on int {
     return this > val ? this : null;
   }
 }
+
+///List of month names
+const List<String> months = <String>[
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
+/// List of full month names
+const List<String> monthsFullName = <String>[
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
