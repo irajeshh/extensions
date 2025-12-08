@@ -242,7 +242,7 @@ extension StringExtension on String {
 
   ///Returns singular or plural form of the given string based on the count
   String pluralize(final int count, {final String? singular, final String? plural}) {
-    String _t = count == 1 ? singular ?? this : plural ?? '${this}s';
+    final String _t = count == 1 ? singular ?? this : plural ?? '${this}s';
     return '$count $_t';
   }
 
@@ -263,6 +263,17 @@ extension StringExtension on String {
         // Long single word - take first 3 letters
         return substring(0, 3).toUpperCase();
       }
+    }
+  }
+
+  ///Returns the month number from the given month name or short name
+  int get toMonthNumber {
+    if (months.has(this)) {
+      return months.indexOf(this) + 1;
+    } else if (monthsFullName.has(this)) {
+      return monthsFullName.indexOf(this) + 1;
+    } else {
+      return 0;
     }
   }
 }
