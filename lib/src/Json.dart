@@ -71,8 +71,8 @@ extension JsonExtension on Json {
   Json safeJson(final String key) => nullableJson(key) ?? <String, dynamic>{};
 
   HeaderJson safeHeaderJson(final String key) {
-    HeaderJson res = {};
-    safeJson(key).forEach((k, v) {
+    final HeaderJson res = <String, String>{};
+    safeJson(key).forEach((final String k, final v) {
       if (v is String) res[k] = v;
     });
     return res;
@@ -117,7 +117,8 @@ extension JsonExtension on Json {
   }
 
   ///Returns the list of Enums from given Json
-  List<T> safeEnums<T>(final String key, final List<T> values) => safeList<String>(key).removeDuplicates.toEnums<T>(values);
+  List<T> safeEnums<T>(final String key, final List<T> values) =>
+      safeList<String>(key).removeDuplicates.toEnums<T>(values);
 
   ///Trying to render an Icon based on given [codePoint] value
   IconData? icon(final String key) {
