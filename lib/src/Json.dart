@@ -78,6 +78,18 @@ extension JsonExtension on Json {
     return res;
   }
 
+  StringIntMap safeStringIntMap(final String key) {
+    final StringIntMap res = <String, int>{};
+    final Json j = safeJson(key);
+    j.forEach((final String k, final v) {
+      final int intValue = j.safeInt(k);
+      if (intValue != null) {
+        res[k] = intValue;
+      }
+    });
+    return res;
+  }
+
   ///Generates a List of dynamic from the given key inside the Json
   List<T> safeList<T>(final String key) {
     final List<T> list = <T>[];
