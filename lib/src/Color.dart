@@ -3,7 +3,8 @@ part of '../extensions.dart';
 ///Color extension
 extension ColorExtension on Color? {
   ///Returns Black or While color better readablity for this backgroundColor
-  Color get readable => (this ?? Colors.grey).computeLuminance() > 0.35 ? Colors.black : Colors.white;
+  Color get readable =>
+      (this ?? Colors.grey).computeLuminance() > 0.35 ? Colors.black : Colors.white;
 
   ///It returns the [darken Color] of the given [color] with the [value] adjustment.
   ///Usage: [0.1] is too dark & [1] is too light.
