@@ -28,8 +28,17 @@ extension ColorExtension on Color? {
     return value == null ? null : Color(value);
   }
 
-  ///Returns the HEX code value of the color
-  String? get hexCode => this == null ? null : '#${this?.value.toRadixString(16)}';
+  ///Returns the HEX code value of the color in RGBA format
+  String? get hexCode {
+    if (this == null) return null;
+    final int argb = this!.value;
+    final int r = (argb >> 16) & 0xFF;
+    final int g = (argb >> 8) & 0xFF;
+    final int b = argb & 0xFF;
+    final int a = (argb >> 24) & 0xFF;
+    return '#${r.toRadixString(16).padLeft(2, '0')}${g.toRadixString(16).padLeft(2, '0')}${b.toRadixString(16).padLeft(2, '0')}${a.toRadixString(16).padLeft(2, '0')}'
+        .toUpperCase();
+  }
 
   ///Returns the given color, only if not transparent!
   ///Used in [copyWith] color pickers!
