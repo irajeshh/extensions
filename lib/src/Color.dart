@@ -10,7 +10,8 @@ extension ColorExtension on Color? {
   ///Usage: [0.1] is too dark & [1] is too light.
   ///There are no identified [value], which returns the [original] color
   ///And the [result] will be changing for diffrent [color] inputs.
-  Color dark([final double value = 0.45]) => HSLColor.fromColor(this ?? Colors.grey).withLightness(value).toColor();
+  Color dark([final double value = 0.45]) =>
+      HSLColor.fromColor(this ?? Colors.grey).withLightness(value).toColor();
 
   ///Returns color from the given String
   static Color? colorFromString(final Object? color) {
