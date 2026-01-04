@@ -132,11 +132,7 @@ extension JsonExtension on Json {
   List<T> safeEnums<T>(final String key, final List<T> values) =>
       safeList<String>(key).removeDuplicates.toEnums<T>(values);
 
-  ///Trying to render an Icon based on given [codePoint] value
-  IconData? icon(final String key) {
-    final int? codePoint = nullableInt(key);
-    return codePoint == null ? null : IconData(codePoint, fontFamily: 'MaterialIcons');
-  }
+  
 
   ///Parses the color from the given Json
   Color? color(final String key, {final Color? orElse}) {
