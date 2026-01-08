@@ -37,10 +37,10 @@ extension DateExtension on DateTime {
   String get ymdhms => '$ymd @ $hms';
 
   ///Returns Date & Time in [2023-04-08-07:03-AM] format
-  String get ymdhmID => '$ymd-$hm'.replaceAll(' ', '-');
+  String get ymdhmID => '$ymd-$hm'.replaceAll(' ', '-').replaceAll(':', '-');
 
   ///Returns Date & Time in [2023-04-08-07:03-AM] format
-  String get ymdhmsID => '$ymd-$hms'.replaceAll(' ', '-');
+  String get ymdhmsID => '$ymd-$hms'.replaceAll(' ', '-').replaceAll(':', '-');
 
   ///Returns the no of days in the given date
   int get noOfDaysInMonth {
@@ -149,6 +149,7 @@ extension DateExtension on DateTime {
 
   ///Returns the milliseconds since epoch for the beginning of the day
   int get startingMillis => starting.millisecondsSinceEpoch;
+
   ///Returns the milliseconds since epoch for the end of the day
   int get endingMillis => ending.millisecondsSinceEpoch;
 }
