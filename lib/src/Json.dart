@@ -57,6 +57,15 @@ extension JsonExtension on Json {
     }
   }
 
+  bool? nullableBool(final String key, {final bool orElse = false}) {
+    final Object? v = this[key];
+    if (v != null) {
+      return safeBool(key, orElse: orElse);
+    } else {
+      return null;
+    }
+  }
+
   ///Parses the [createdAt] value as [int]
   ///A common access is applied, because 99% of the models we create will
   int get createdAt => safeInt('createdAt', orElse: DateTime.now().millisecondsSinceEpoch);
@@ -131,8 +140,6 @@ extension JsonExtension on Json {
   ///Returns the list of Enums from given Json
   List<T> safeEnums<T>(final String key, final List<T> values) =>
       safeList<String>(key).removeDuplicates.toEnums<T>(values);
-
-  
 
   ///Parses the color from the given Json
   Color? color(final String key, {final Color? orElse}) {
