@@ -30,6 +30,8 @@ extension DateExtension on DateTime {
     return '$h2:$m:$s $amPm';
   }
 
+  String get hrs => hm.replaceAll(' AM', '').replaceAll(' PM', '');
+
   ///Returns Date & Time in [2023-04-08 @ 07:03 AM] format
   String get ymdhm => '$ymd @ $hm';
 
