@@ -9,3 +9,4 @@ typedef HeaderJson = Map<String, String>;
 typedef HeaderEntry = MapEntry<String, String>;
 
 typedef StringIntMap = Map<String, int>;
+typedef StringIntMapEntry = MapEntry<String, int>;
