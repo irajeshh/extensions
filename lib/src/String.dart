@@ -230,8 +230,19 @@ extension StringExtension on String {
   }
 
   ///Replaces today date in the string with "Today"
-  String get setToday =>
-      replaceAll(DateTime.now().toSQL, 'Today').replaceAll(DateTime.now().dayMonthYear, 'Today');
+  String get setToday {
+    DateTime t = DateTime.now();
+    DateTime yd = t.subtract(const Duration(days: 1));
+    DateTime tm = t.add(const Duration(days: 1));
+    List<String> todayValues = [t.toSQL, t.dayMonthYear, t.dayMonthNameFullYear];
+    List<String> yesterdayValues = [yd.toSQL, yd.dayMonthYear, yd.dayMonthNameFullYear];
+    List<String> tomorrowValues = [tm.toSQL, tm.dayMonthYear, tm.dayMonthNameFullYear];
+    String res = this;
+    for (String val in todayValues) res = res.replaceAll(val, 'Today');
+    for (String val in yesterdayValues) res = res.replaceAll(val, 'Yesterday');
+    for (String val in tomorrowValues) res = res.replaceAll(val, 'Tomorrow');
+    return res;
+  }
 
   ///Puts an article before the string based on its first character
   String get putArticle {
