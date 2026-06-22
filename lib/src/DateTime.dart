@@ -109,6 +109,9 @@ extension DateExtension on DateTime {
   ///Returns the date in the format of [25] [Jan] [2023]
   String get dayMonthYear => '${_twoDigit(day)} ${month.toMonthName} $year';
 
+  String get dayMonth => '${_twoDigit(day)} ${month.toMonthName}';
+  String get monthYear => '${month.toMonthName} $year';
+
   ///Returns the date in the format of [25] [January] [2023]
   String get dayMonthNameFullYear => '${_twoDigit(day)} ${month.toMonthNameFull} $year';
 
