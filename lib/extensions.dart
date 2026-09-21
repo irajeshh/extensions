@@ -9,6 +9,7 @@ part './config.dart';
 part './src/Object.dart';
 part 'src/Color.dart';
 part 'src/DateTime.dart';
+part 'src/Duration.dart';
 part 'src/Enum.dart';
 part 'src/Json.dart';
 part 'src/List.dart';
