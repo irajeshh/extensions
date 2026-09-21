@@ -10,3 +10,5 @@ typedef HeaderEntry = MapEntry<String, String>;
 
 typedef StringIntMap = Map<String, int>;
 typedef StringIntMapEntry = MapEntry<String, int>;
+typedef IntStringMap = Map<int, String>;
+typedef IntStringMapEntry = MapEntry<int, String>;
