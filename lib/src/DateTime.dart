@@ -122,12 +122,10 @@ extension DateExtension on DateTime {
   bool isSameDate(final DateTime date) => toSQL == date.toSQL;
 
   ///Returns the dateTime object in a way where it can be used in sql database
-  String get toSQL {
-    final String year = this.year.toString();
-    final String month = this.month.toString().padLeft(2, '0');
-    final String day = this.day.toString().padLeft(2, '0');
-    return '$year-$month-$day';
-  }
+  String get toSQL => '${toSQLYM}-${_twoDigit(day)}';
+
+  ///Returns the Year & Month alone in [2023-04] format
+  String get toSQLYM => '${this.year}-${_twoDigit(month)}';
 
   ///Returns the name of weekday of the date
   Weekday get weekdayName {
@@ -160,6 +158,9 @@ extension DateExtension on DateTime {
 
   ///Returns the milliseconds since epoch for the end of the day
   int get endingMillis => ending.millisecondsSinceEpoch;
+
+  ///Returns the human readable duration between this date and [to]
+  String toByToReadable(final DateTime to) => to.difference(this).toByToReadable;
 }
 
 ///This value is used to compare [TimeOfDay] values accross the project.
