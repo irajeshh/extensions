@@ -35,6 +35,39 @@ extension ListExtention on List<dynamic>? {
   ///To generate a list of [Tags] for [Firebase] search functionality from the given list of [sentences]
   ///Example of sentences are [title, description]
   ///All the words fromt he given [sentences] will be splitted to create a minimal list of [tags]
+  /// Common English stop words to exclude from tag generation
+  static const Set<String> _stopWords = <String>{
+    // Articles
+    'a', 'an', 'the',
+    // Pronouns
+    'i', 'me', 'my', 'we', 'our', 'you', 'your', 'he', 'him', 'his',
+    'she', 'her', 'it', 'its', 'they', 'them', 'their', 'this', 'that',
+    'these', 'those', 'who', 'whom', 'which', 'what',
+    // Auxiliary / Common verbs
+    'is', 'am', 'are', 'was', 'were', 'be', 'been', 'being',
+    'has', 'have', 'had', 'do', 'does', 'did', 'will', 'would',
+    'shall', 'should', 'can', 'could', 'may', 'might', 'must',
+    // Verbs
+    'like', 'make', 'made', 'going', 'went', 'said', 'come', 'take',
+    // Prepositions
+    'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from',
+    'up', 'about', 'into', 'over', 'after', 'out', 'off',
+    'through', 'between', 'during', 'before', 'without', 'within',
+    'under', 'above', 'below', 'along', 'across', 'around',
+    'among', 'against', 'near',
+    // Conjunctions
+    'and', 'but', 'or', 'nor', 'so', 'yet', 'both', 'either', 'neither',
+    // Adverbs
+    'more', 'most', 'less', 'much', 'many', 'still', 'always',
+    'never', 'really', 'already', 'often',
+    // Other common words
+    'not', 'no', 'than', 'too', 'very', 'just', 'also', 'now', 'here',
+    'there', 'then', 'if', 'when', 'where', 'how', 'all', 'each',
+    'every', 'any', 'some', 'such', 'only', 'own', 'same', 'other',
+    'new', 'old', 'get', 'got', 'one', 'two',
+    'back', 'even', 'way', 'let', 'well',
+  };
+
   List<String> get generateTags {
     final List<String> tags = <String>[];
     if (this == null) {
@@ -43,11 +76,12 @@ extension ListExtention on List<dynamic>? {
     // Process each sentence John Basky
     for (final dynamic sentence in this!) {
       if (sentence != null) {
-        final List<String> words = '$sentence'.toLowerCase().replaceAll(',', '').replaceAll('\n', ' ').split(' ');
+        final List<String> words =
+            '$sentence'.toLowerCase().replaceAll(',', '').replaceAll('\n', ' ').split(' ');
         // Add full words as tags John, Basky
         for (final String word in words) {
           final String tag = word.trim();
-          if (tags.contains(tag) == false && tag.isValid) {
+          if (tags.contains(tag) == false && tag.isValid && !_stopWords.contains(tag)) {
             tags.add(tag);
 
             // Characters of words  Joh, John, Bas, Bask, Basky
@@ -104,7 +138,10 @@ extension ListExtention on List<dynamic>? {
 
   ///If the given list contains the given object in any format
   bool has(final Object? o) {
-    return (this ?? <dynamic>[]).map((final Object? e) => e.equatable).toList().contains(o?.equatable);
+    return (this ?? <dynamic>[])
+        .map((final Object? e) => e.equatable)
+        .toList()
+        .contains(o?.equatable);
   }
 
   ///If the given list is not empty, then return the casted list of type [T]
