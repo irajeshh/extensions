@@ -2,6 +2,12 @@ part of '../extensions.dart';
 
 // ignore: public_member_api_docs
 extension StringExtension on String {
+  ///Returns a safe PDF filename by replacing path separators and adding the PDF extension.
+  String get pdfFileName {
+    final String safeFileName = replaceAll('/', '~');
+    return safeFileName.toLowerCase().endsWith('.pdf') ? safeFileName : '$safeFileName.pdf';
+  }
+
   ///Returns the given text by only making the first character in capital and rest in lowe case.
   String get upperCaseFirst {
     if (length > 1) {
